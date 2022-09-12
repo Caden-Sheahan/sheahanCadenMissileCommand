@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8560287821586608321}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0022924468, y: -3.151, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -96,7 +96,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8560287821586608321}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf60f053b9b2a042974e14bd8fb6f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 1
   bSpeed: 4
+  isPlayer: 1
   tPoint: {fileID: 6440052641698694227, guid: 41a8c6da1f060eb4da4835ecfc51eaf2, type: 3}
   exp: {fileID: 4589717360592556622, guid: 1839cd36ebb32ad499c1e3df2650bcaf, type: 3}

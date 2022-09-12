@@ -10,10 +10,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionBehaviour : MonoBehaviour
+public class TargetBehaviour : MonoBehaviour
 {
-    public void Explode()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("pExplosion"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
