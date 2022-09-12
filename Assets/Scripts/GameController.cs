@@ -13,7 +13,14 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public GameObject go;
     // Update is called once per frame
+
+    void Start()
+    {
+        StartCoroutine(GameOver());
+    }
+
     void Update()
     {
         if (Input.GetKey(KeyCode.R)) // reset game
@@ -26,6 +33,16 @@ public class GameController : MonoBehaviour
         {
             print("Quit!");
             Application.Quit();
+        }
+    }
+
+    IEnumerator GameOver()
+    {
+        if (CastleBehaviour.castleCount == 0)
+        {
+            go.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            SceneManager.LoadScene(0);
         }
     }
 }
