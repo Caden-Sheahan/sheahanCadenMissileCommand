@@ -1,10 +1,9 @@
 /******************************************************************************
-//      File Name: GameController.cs
+//      File Name: ExplosionBehaviour.cs
 //      Author: Caden Sheahan
 //      Creation Date: September 11th, 2022
 //
-//      Description: The GameController script controls inputs and actions that
-//      dont' effect the gameplay. It consists of debug inputs
+//      Description: 
 ******************************************************************************/
 using System.Collections;
 using System.Collections.Generic;

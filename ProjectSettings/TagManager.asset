@@ -8,6 +8,7 @@ TagManager:
   - eBullet
   - pExplosion
   - castle
+  - pBullet
   layers:
   - Default
   - TransparentFX

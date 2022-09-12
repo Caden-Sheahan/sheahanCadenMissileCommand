@@ -4,7 +4,8 @@
 //      Creation Date: September 11th, 2022
 //
 //      Description: The GameController script controls inputs and actions that
-//      dont' effect the gameplay. It consists of debug inputs
+//      don't effect the gameplay. It consists of debug inputs, spawning the
+        enemy bullets, and restarting the game.
 ******************************************************************************/ 
 using System.Collections;
 using System.Collections.Generic;
@@ -13,25 +14,23 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public static int castleCount;
 
     private GameObject[] castles;
     public static int cTarget;
-    public float eFireRate = 1.5f;
-    private Quaternion flip;
-
     public GameObject eBullet;
-    public GameObject go;
+    public float eFireRate = 1.5f;
+    private Quaternion direction;
 
     void Start()
     {
-        rb = eBullet.GetComponent<Rigidbody2D>();
+        castleCount = 6;
         StartCoroutine(FireAtCastle());
-        StartCoroutine(GameOver());
     }
 
     void Update()
     {
+        AimBullet();
         if (Input.GetKey(KeyCode.R)) // reset game
         {
             print("Reload Game!");
@@ -43,42 +42,26 @@ public class GameController : MonoBehaviour
             print("Quit!");
             Application.Quit();
         }
-    }
-
-    IEnumerator GameOver()
-    {
-        if (CastleBehaviour.castleCount == 0)
+        if (castleCount == 0)
         {
-            go.SetActive(true);
-            yield return new WaitForSeconds(2f);
             SceneManager.LoadScene(0);
         }
+    }
+
+    private void AimBullet()
+    {
+        
     }
 
     IEnumerator FireAtCastle()
     {
         while(true)
         {
-            cTarget = Random.Range(0, CastleBehaviour.castleCount);
+            cTarget = Random.Range(0, castleCount);
             castles = GameObject.FindGameObjectsWithTag("castle");
             Instantiate(eBullet, new Vector3(Random.Range(-8, 8), 4.5f, 0),
-                Quaternion.LookRotation(castles[cTarget].transform.position, Vector3.up));
+                Quaternion.identity);
             yield return new WaitForSeconds(eFireRate);
         }
     }
-
-
-
-
-    //readyToFire = false;
-    //castles = GameObject.FindGameObjectsWithTag("castle");
-    //foreach (GameObject castle in castles)
-    //{
-    //    cPos.Add(castle.transform.position);
-    //}
-    //cTarget = Random.Range(0, 6);
-    //Vector2 eFireDirect = cPos[cTarget] - rb.position;
-    //float fAngle =
-    //    Mathf.Atan2(eFireDirect.x, eFireDirect.y) * Mathf.Rad2Deg + 90f;
-    //rb.rotation = fAngle;
 }

@@ -1,10 +1,9 @@
 /******************************************************************************
-//      File Name: GameController.cs
+//      File Name: BulletBehaviour.cs
 //      Author: Caden Sheahan
 //      Creation Date: September 11th, 2022
 //
-//      Description: The GameController script controls inputs and actions that
-//      dont' effect the gameplay. It consists of debug inputs
+//      Description: 
 ******************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
@@ -12,8 +11,6 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    GameController gc;
-
     private GameObject[] castles;
     private Vector2 mPos;
     private Vector2 target;
@@ -26,7 +23,6 @@ public class BulletBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gc = GetComponent<GameController>();
         mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         castles = GameObject.FindGameObjectsWithTag("castle");
         target = castles[GameController.cTarget].transform.position;
@@ -50,6 +46,11 @@ public class BulletBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("TargetPoint") && isPlayer)
+        {
+            Instantiate(exp, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("castle") && !isPlayer)
         {
             Instantiate(exp, transform.position, Quaternion.identity);
             Destroy(gameObject);
